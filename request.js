@@ -21,7 +21,7 @@ $(document).ready(function() {
 
 
 function mybutton() {
-    var mytext = document.getElementById('button').value;
+    var mytext = document.getElementById('button2').value;
 //    alert(mytext)
     send(mytext)
 }
