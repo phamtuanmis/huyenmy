@@ -12,6 +12,11 @@ $(document).ready(function() {
             send();
         }
     });
+    $(p).click(function)
+    {
+                send();
+
+    }
     $('.send_message').click(function (e) {
             send();
     });
