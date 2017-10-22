@@ -12,11 +12,9 @@ $(document).ready(function() {
             send();
         }
     });
-    $("p").click(function)
-    {
-                send();
-
-    }
+    $("p").click(function(){
+        alert("The paragraph was clicked.");
+    });
     $('.send_message').click(function (e) {
             send();
     });
