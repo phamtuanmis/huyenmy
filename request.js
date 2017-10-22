@@ -12,11 +12,6 @@ $(document).ready(function() {
             send();
         }
     });
-    $('.custom_button').click(function (e) {
-            var mytext = document.getElementById('myBtn').value;
-            alert(mytext)
-            send();
-    });
     $('.send_message').click(function (e) {
             send();
     });
