@@ -12,23 +12,27 @@ $(document).ready(function() {
             send();
         }
     });
-    $('.custom_button').click(function (e) {
-            var mytext = document.getElementById('myBtn').value;
-            send();
-    });
     $('.send_message').click(function (e) {
             send();
     });
 
 });
 
-function send() {
-    if (typeof mytext !== 'undefined') {
-        var text = mytext;
+
+
+function mybutton() {
+    var mytext = document.getElementById('button').value;
+    send(mytext)
+}
+
+function send(mytext) {
+    if (typeof mytext !='undefined'){
+        var text = mytext
+//        alert(mytext)
     } else {
         var text = $("#input").val();
     }
-    var text = $("#input").val();
+
     var doc = document.getElementById('bot').innerHTML;
     document.getElementById('bot').innerHTML = doc + "<div class='calloutbig'> <img src='user.png' width='32px' height='32px' class='circular--square' style='float: right;' /><div class='calloutleft'>" + text + "</div><div class='message-from message-from-me'>"+ new Date().toLocaleTimeString() +"</div></div>";
 //    alert(val);
@@ -65,7 +69,7 @@ function setResponse(val) {
     nb_reply = replies.length
     for (i = 0; i < nb_reply; i++) {
         var doc = document.getElementById('bot').innerHTML;
-        document.getElementById('bot').innerHTML = doc + "<div class='calloutbig'><img src='chatbot.png' width='50px' height='50px' class='circular--square' style='float: left;' /><div class='calloutright'>" + replies[i]["speech"] + "</div><div class='message-from message-from-bot'>"+ new Date().toLocaleTimeString() +"</div></div>";
+        document.getElementById('bot').innerHTML = doc + "<div class='calloutbig' id='demo'><img src='chatbot.png' width='50px' height='50px' class='circular--square' style='float: left;' /><div class='calloutright'>" + replies[i]["speech"] + "</div><div class='message-from message-from-bot'>"+ new Date().toLocaleTimeString() +"</div></div>";
         var doc = document.getElementById('bot').lastElementChild.innerHTML;
         var objDiv = document.getElementById("bot");
         objDiv.scrollTop = objDiv.scrollHeight;
