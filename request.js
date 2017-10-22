@@ -12,10 +12,10 @@ $(document).ready(function() {
             send();
         }
     });
-//    $('.custom_button').click(function (e) {
-//            var mytext = document.getElementById('myBtn').value;
-//            send();
-//    });
+    $('.custom_button').click(function (e) {
+            var mytext = document.getElementById('myBtn').value;
+            send();
+    });
     $('.send_message').click(function (e) {
             send();
     });
@@ -23,11 +23,11 @@ $(document).ready(function() {
 });
 
 function send() {
-//    if (typeof mytext !== 'undefined') {
-//        var text = mytext;
-//    } else {
-//        var text = $("#input").val();
-//    }
+    if (typeof mytext !== 'undefined') {
+        var text = mytext;
+    } else {
+        var text = $("#input").val();
+    }
     var text = $("#input").val();
     var doc = document.getElementById('bot').innerHTML;
     document.getElementById('bot').innerHTML = doc + "<div class='calloutbig'> <img src='user.png' width='32px' height='32px' class='circular--square' style='float: right;' /><div class='calloutleft'>" + text + "</div><div class='message-from message-from-me'>"+ new Date().toLocaleTimeString() +"</div></div>";
