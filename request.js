@@ -12,7 +12,7 @@ $(document).ready(function() {
             send();
         }
     });
-    $(p).click(function)
+    $("p").click(function)
     {
                 send();
 
