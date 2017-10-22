@@ -18,7 +18,16 @@ $(document).ready(function() {
 
 });
 
+
+document.getElementById("myBtn").onclick = function() {myFunction()};
+function myFunction() {
+   var mytext = document.getElementById('myBtn').value;
+   alert(mytext);
+    }
+
+
 function send() {
+   var mytext = document.getElementById('myBtn').value;
     if (typeof mytext !== 'undefined') {
         var text = mytext;
     } else {
