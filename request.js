@@ -19,11 +19,11 @@ $(document).ready(function() {
 });
 
 
-document.getElementById("myBtn").onclick = function() {myFunction()};
-function myFunction() {
-   var mytext = document.getElementById('myBtn').value;
-   alert(mytext);
-    }
+//document.getElementById("myBtn").onclick = function() {myFunction()};
+//function myFunction() {
+//   var mytext = document.getElementById('myBtn').value;
+//   alert(mytext);
+//    }
 
 
 function send() {
