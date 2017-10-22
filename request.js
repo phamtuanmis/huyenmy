@@ -12,22 +12,17 @@ $(document).ready(function() {
             send();
         }
     });
+    $('.custom_button').click(function (e) {
+            var mytext = document.getElementById('myBtn').value;
+            send();
+    });
     $('.send_message').click(function (e) {
             send();
     });
 
 });
 
-
-//document.getElementById("myBtn").onclick = function() {myFunction()};
-//function myFunction() {
-//   var mytext = document.getElementById('myBtn').value;
-//   alert(mytext);
-//    }
-
-
 function send() {
-   var mytext = document.getElementById('myBtn').value;
     if (typeof mytext !== 'undefined') {
         var text = mytext;
     } else {
