@@ -91,7 +91,7 @@ function setResponse(val) {
                         "prosody": 0,
                         },
                 async: false,
-                data: div.innerText,
+                data: "Xin chào các bạn nhé",
                 success: function(data) {setSound(JSON.stringify(data));},
             });
 
