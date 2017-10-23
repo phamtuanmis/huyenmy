@@ -64,22 +64,22 @@ function setResponse(val) {
         div.innerHTML = html;
 //        alert(div.innerText);
 
-        $.ajax({
-            type: "POST",
-            url: "http://api.openfpt.vn/text2speech/v4",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            headers: {
-                    "api_key": "b7891e7b46764220b73911ed479f3c7f",
-                    "speed": 2,
-                    "voice": "male",
-                    "prosody": 1,
-                    },
-            data: div.innerText,
-            success: function(data) {
-                setSound(JSON.stringify(data));
-                },
-        });
+//        $.ajax({
+//            type: "POST",
+//            url: "http://api.openfpt.vn/text2speech/v4",
+//            contentType: "application/json; charset=utf-8",
+//            dataType: "json",
+//            headers: {
+//                    "api_key": "b7891e7b46764220b73911ed479f3c7f",
+//                    "speed": 2,
+//                    "voice": "male",
+//                    "prosody": 1,
+//                    },
+//            data: div.innerText,
+//            success: function(data) {
+//                setSound(JSON.stringify(data));
+//                },
+//        });
 
         var doc = document.getElementById('bot').innerHTML;
         document.getElementById('bot').innerHTML = doc + "<div class='calloutbig' id='callout'><img src='chatbot.png' width='50px' height='50px' class='circular--square' style='float: left;' /><div class='calloutright'>" + replies[i]["speech"] + "</div><div class='message-from message-from-bot'>"+ new Date().toLocaleTimeString() +"</div></div>";
