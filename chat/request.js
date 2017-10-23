@@ -33,7 +33,7 @@ function send(mytext) {
     document.getElementById('bot').innerHTML = doc + "<div class='calloutbig'> <img src='user.png' width='32px' height='32px' class='circular--square' style='float: right;' /><div class='calloutleft'>" + text + "</div><div class='message-from message-from-me'>"+ new Date().toLocaleTimeString() +"</div></div>";
     var objDiv = document.getElementById("bot");
     objDiv.scrollTop = objDiv.scrollHeight;
-    $.ajax({
+    var fun1 = $.ajax({
         type: "POST",
         url: "https://api.api.ai/v1/query?v=20150910",
         contentType: "application/json; charset=utf-8",
@@ -50,7 +50,7 @@ function send(mytext) {
                 var div = document.createElement("div");
                 div.innerHTML = html;
 
-                $.ajax({
+                var fun2 = $.ajax({
                     type: "POST",
                     url: "http://api.openfpt.vn/text2speech/v4",
                     contentType: "application/json; charset=utf-8",
@@ -61,7 +61,7 @@ function send(mytext) {
                             "voice": "female",
                             "prosody": 1,
                             },
-                    data: div.innerText,
+                    data: " Xin chào các bạn của tôi nhé",
                     success: function(data) {
                         sound = $.parseJSON(JSON.stringify(data));
                         var url = sound.async;
