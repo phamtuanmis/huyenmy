@@ -109,6 +109,7 @@ function setSound(val)
 {
     speech = $.parseJSON(val);
     var url = speech.async;
+    alert(url);
     var audio = new Audio(url);
     audio.play();
 
