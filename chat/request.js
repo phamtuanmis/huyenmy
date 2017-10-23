@@ -38,7 +38,7 @@ function send(mytext) {
 //    alert(val);
     var objDiv = document.getElementById("bot");
     objDiv.scrollTop = objDiv.scrollHeight;
-    var async1 = $.ajax({
+    $.ajax({
     //    alert(val);
         type: "POST",
 
@@ -51,7 +51,7 @@ function send(mytext) {
         dataType: "json",
         headers: {"Authorization": "Bearer 1491fc0d408c4bfbb6d4e53773a14940"},
         //  setResponse("............");
-        async: false,
+
         data: JSON.stringify({ query: text, sessionId: "1491fc0d408" }),
         success: function(data) {
             setResponse(JSON.stringify(data));
@@ -79,7 +79,7 @@ function setResponse(val) {
         var delayMillis = 100; //1 second
 
 
-            var async2 = $.ajax({
+            $.ajax({
                 type: "POST",
                 url: "http://api.openfpt.vn/text2speech/v4",
                 contentType: "application/json; charset=utf-8",
@@ -90,23 +90,18 @@ function setResponse(val) {
                         "voice": "female",
                         "prosody": 0,
                         },
-                async: false,
-                data: "Xin chào các bạn nhé",
+                data: div.innerText,
                 success: function(data) {setSound(JSON.stringify(data));},
             });
 
-            $.when(async2, async1).done(function(result2, result1) {
-                var doc = document.getElementById('bot').innerHTML;
-                setTimeout(function() {
-                    document.getElementById('bot').innerHTML = doc + "<div class='calloutbig' id='callout'><img src='chatbot.png' width='50px' height='50px' class='circular--square' style='float: left;' /><div class='calloutright'>" + replies[i]["speech"] + "</div><div class='message-from message-from-bot'>"+ new Date().toLocaleTimeString() +"</div></div>";
-                }, delayMillis);
-                setTimeout()
-                var doc = document.getElementById('bot').lastElementChild.innerHTML;
-                var objDiv = document.getElementById("bot");
-                objDiv.scrollTop = objDiv.scrollHeight;
-            });
-
-
+            var doc = document.getElementById('bot').innerHTML;
+            setTimeout(function() {
+                document.getElementById('bot').innerHTML = doc + "<div class='calloutbig' id='callout'><img src='chatbot.png' width='50px' height='50px' class='circular--square' style='float: left;' /><div class='calloutright'>" + replies[i]["speech"] + "</div><div class='message-from message-from-bot'>"+ new Date().toLocaleTimeString() +"</div></div>";
+            }, delayMillis);
+            setTimeout()
+            var doc = document.getElementById('bot').lastElementChild.innerHTML;
+            var objDiv = document.getElementById("bot");
+            objDiv.scrollTop = objDiv.scrollHeight;
         }
 }
 
