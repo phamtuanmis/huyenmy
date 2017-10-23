@@ -21,7 +21,6 @@ $(document).ready(function() {
 
 function mybutton() {
     var mytext = document.getElementById('button').value;
-//    alert(mytext)
     send(mytext)
 }
 
@@ -75,8 +74,8 @@ function setResponse(val) {
         var html = replies[i]["speech"];
         var div = document.createElement("div");
         div.innerHTML = html;
-//        alert(div.innerText);
-        var delayMillis = 500; //1 second
+        alert(div.innerText);
+        var delayMillis = 200; //1 second
 
 
             $.ajax({
