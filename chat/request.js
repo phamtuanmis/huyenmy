@@ -21,6 +21,7 @@ $(document).ready(function() {
 
 function mybutton() {
     var mytext = document.getElementById('button').value;
+//    alert(mytext)
     send(mytext)
 }
 
@@ -74,8 +75,8 @@ function setResponse(val) {
         var html = replies[i]["speech"];
         var div = document.createElement("div");
         div.innerHTML = html;
-        alert(div.innerText);
-        var delayMillis = 200; //1 second
+//        alert(div.innerText);
+        var delayMillis = 500; //1 second
 
 
             $.ajax({
@@ -90,21 +91,17 @@ function setResponse(val) {
                         "prosody": 1,
                         },
                 data: div.innerText,
-                success: function(data) {
-                    setSound(JSON.stringify(data));
-                },
-                error: function() {
-                    setSound("Không thể kết nối ...");
-                }
+                success: function(data) {setSound(JSON.stringify(data));},
             });
-            new Audio("http://www.21yq.com/zhuantiku/yqgirl03/xia.mp3").play()
 
             var doc = document.getElementById('bot').innerHTML;
-            document.getElementById('bot').innerHTML = doc + "<div class='calloutbig' id='callout'><img src='chatbot.png' width='50px' height='50px' class='circular--square' style='float: left;' /><div class='calloutright'>" + replies[i]["speech"] + "</div><div class='message-from message-from-bot'>"+ new Date().toLocaleTimeString() +"</div></div>";
+            setTimeout(function() {
+                document.getElementById('bot').innerHTML = doc + "<div class='calloutbig' id='callout'><img src='chatbot.png' width='50px' height='50px' class='circular--square' style='float: left;' /><div class='calloutright'>" + replies[i]["speech"] + "</div><div class='message-from message-from-bot'>"+ new Date().toLocaleTimeString() +"</div></div>";
+            }, delayMillis);
+            setTimeout()
             var doc = document.getElementById('bot').lastElementChild.innerHTML;
             var objDiv = document.getElementById("bot");
             objDiv.scrollTop = objDiv.scrollHeight;
-
         }
 }
 
@@ -112,6 +109,7 @@ function setSound(val)
 {
     speech = $.parseJSON(val);
     var url = speech.async;
-    new Audio(url).play()
+    var audio = new Audio(url);
+    audio.play();
 
 }
