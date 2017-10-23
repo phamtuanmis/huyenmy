@@ -67,15 +67,53 @@ function send(mytext) {
 }
 
 function setResponse(val) {
-//    alert(val);
     speech = $.parseJSON(val);
     var replies = speech.result.fulfillment.messages;
     nb_reply = replies.length
     for (i = 0; i < nb_reply; i++) {
-        var doc = document.getElementById('bot').innerHTML;
-        document.getElementById('bot').innerHTML = doc + "<div class='calloutbig'><img src='chatbot.png' width='50px' height='50px' class='circular--square' style='float: left;' /><div class='calloutright'>" + replies[i]["speech"] + "</div><div class='message-from message-from-bot'>"+ new Date().toLocaleTimeString() +"</div></div>";
-        var doc = document.getElementById('bot').lastElementChild.innerHTML;
-        var objDiv = document.getElementById("bot");
-        objDiv.scrollTop = objDiv.scrollHeight;
+
+        var html = replies[i]["speech"];
+        var div = document.createElement("div");
+        div.innerHTML = html;
+//        alert(div.innerText);
+        var delayMillis = 500; //1 second
+
+
+            $.ajax({
+                type: "POST",
+                url: "http://api.openfpt.vn/text2speech/v4",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                headers: {
+                        "api_key": "b7891e7b46764220b73911ed479f3c7f",
+                        "speed": 2,
+                        "voice": "female",
+                        "prosody": 1,
+                        },
+                data: div.innerText,
+                success: function(data) {
+                    setSound(JSON.stringify(data));
+                },
+                error: function() {
+                    setSound("Không thể kết nối ...");
+                }
+            });
+
+            var doc = document.getElementById('bot').innerHTML;
+            setTimeout(function() {
+                document.getElementById('bot').innerHTML = doc + "<div class='calloutbig' id='callout'><img src='chatbot.png' width='50px' height='50px' class='circular--square' style='float: left;' /><div class='calloutright'>" + replies[i]["speech"] + "</div><div class='message-from message-from-bot'>"+ new Date().toLocaleTimeString() +"</div></div>";
+            }, delayMillis);
+            setTimeout()
+            var doc = document.getElementById('bot').lastElementChild.innerHTML;
+            var objDiv = document.getElementById("bot");
+            objDiv.scrollTop = objDiv.scrollHeight;
         }
+}
+
+function setSound(val)
+{
+    speech = $.parseJSON(val);
+    var url = speech.async;
+    new Audio(url).play()
+
 }
