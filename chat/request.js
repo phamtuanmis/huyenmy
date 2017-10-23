@@ -72,10 +72,10 @@ function setResponse(val) {
     nb_reply = replies.length
     for (i = 0; i < nb_reply; i++) {
 
-        var html = replies[i]["speech"];
-        var div = document.createElement("div");
-        div.innerHTML = html;
-            alert(div.innerHTML);
+//        var html = replies[i]["speech"];
+//        var div = document.createElement("div");
+//        div.innerHTML = html;
+//            alert(div.innerHTML);
 
         var delayMillis = 500;
 
