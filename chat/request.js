@@ -38,7 +38,7 @@ function send(mytext) {
 //    alert(val);
     var objDiv = document.getElementById("bot");
     objDiv.scrollTop = objDiv.scrollHeight;
-    $.ajax({
+    var async1 = $.ajax({
     //    alert(val);
         type: "POST",
 
@@ -79,7 +79,7 @@ function setResponse(val) {
         var delayMillis = 100; //1 second
 
 
-            $.ajax({
+            var async2 = $.ajax({
                 type: "POST",
                 url: "http://api.openfpt.vn/text2speech/v4",
                 contentType: "application/json; charset=utf-8",
@@ -95,14 +95,18 @@ function setResponse(val) {
                 success: function(data) {setSound(JSON.stringify(data));},
             });
 
-            var doc = document.getElementById('bot').innerHTML;
-            setTimeout(function() {
-                document.getElementById('bot').innerHTML = doc + "<div class='calloutbig' id='callout'><img src='chatbot.png' width='50px' height='50px' class='circular--square' style='float: left;' /><div class='calloutright'>" + replies[i]["speech"] + "</div><div class='message-from message-from-bot'>"+ new Date().toLocaleTimeString() +"</div></div>";
-            }, delayMillis);
-            setTimeout()
-            var doc = document.getElementById('bot').lastElementChild.innerHTML;
-            var objDiv = document.getElementById("bot");
-            objDiv.scrollTop = objDiv.scrollHeight;
+            $.when(async2, async1).done(function(result2, result1) {
+                var doc = document.getElementById('bot').innerHTML;
+                setTimeout(function() {
+                    document.getElementById('bot').innerHTML = doc + "<div class='calloutbig' id='callout'><img src='chatbot.png' width='50px' height='50px' class='circular--square' style='float: left;' /><div class='calloutright'>" + replies[i]["speech"] + "</div><div class='message-from message-from-bot'>"+ new Date().toLocaleTimeString() +"</div></div>";
+                }, delayMillis);
+                setTimeout()
+                var doc = document.getElementById('bot').lastElementChild.innerHTML;
+                var objDiv = document.getElementById("bot");
+                objDiv.scrollTop = objDiv.scrollHeight;
+            });
+
+
         }
 }
 
