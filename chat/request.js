@@ -91,7 +91,7 @@ function setResponse(val) {
                         "voice": "female",
                         "prosody": 1,
                         },
-                data: div.innerText,
+                data: "Xin chào các bạn",
                 success: function(data) {setSound(JSON.stringify(data));},
             });
 
