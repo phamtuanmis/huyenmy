@@ -72,12 +72,11 @@ function setResponse(val) {
     nb_reply = replies.length
     for (i = 0; i < nb_reply; i++) {
 
-//        var html = replies[i]["speech"];
-//        var div = document.createElement("div");
-//        div.innerHTML = html;
-//            alert(div.innerHTML);
-
-        var delayMillis = 500;
+        var html = replies[i]["speech"];
+        var div = document.createElement("div");
+        div.innerHTML = html;
+//        alert(div.innerText);
+        var delayMillis = 100; //1 second
 
 
             $.ajax({
@@ -89,9 +88,9 @@ function setResponse(val) {
                         "api_key": "b7891e7b46764220b73911ed479f3c7f",
                         "speed": 2,
                         "voice": "female",
-                        "prosody": 1,
+                        "prosody": 0,
                         },
-                data: "Xin chào các bạn",
+                data: div.innerText,
                 success: function(data) {setSound(JSON.stringify(data));},
             });
 
@@ -110,7 +109,7 @@ function setSound(val)
 {
     speech = $.parseJSON(val);
     var url = speech.async;
-    alert(url);
+//    alert(url);
     var audio = new Audio(url);
     audio.play();
 
