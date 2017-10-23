@@ -51,7 +51,7 @@ function send(mytext) {
         dataType: "json",
         headers: {"Authorization": "Bearer 1491fc0d408c4bfbb6d4e53773a14940"},
         //  setResponse("............");
-
+        async: false,
         data: JSON.stringify({ query: text, sessionId: "1491fc0d408" }),
         success: function(data) {
             setResponse(JSON.stringify(data));
@@ -90,6 +90,7 @@ function setResponse(val) {
                         "voice": "female",
                         "prosody": 0,
                         },
+                async: false,
                 data: div.innerText,
                 success: function(data) {setSound(JSON.stringify(data));},
             });
