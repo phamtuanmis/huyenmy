@@ -17,8 +17,6 @@ $(document).ready(function() {
 
 });
 
-
-
 function mybutton() {
     var mytext = document.getElementById('button').value;
 //    alert(mytext)
@@ -32,10 +30,8 @@ function send(mytext) {
     } else {
         var text = $("#input").val();
     }
-
     var doc = document.getElementById('bot').innerHTML;
     document.getElementById('bot').innerHTML = doc + "<div class='calloutbig'> <img src='user.png' width='32px' height='32px' class='circular--square' style='float: right;' /><div class='calloutleft'>" + text + "</div><div class='message-from message-from-me'>"+ new Date().toLocaleTimeString() +"</div></div>";
-//    alert(val);
     var objDiv = document.getElementById("bot");
     objDiv.scrollTop = objDiv.scrollHeight;
     $.ajax({
@@ -62,24 +58,28 @@ function setResponse(val) {
         var html = replies[i]["speech"];
         var div = document.createElement("div");
         div.innerHTML = html;
-//        alert(div.innerText);
 
-//        $.ajax({
-//            type: "POST",
-//            url: "http://api.openfpt.vn/text2speech/v4",
-//            contentType: "application/json; charset=utf-8",
-//            dataType: "json",
-//            headers: {
-//                    "api_key": "b7891e7b46764220b73911ed479f3c7f",
-//                    "speed": 2,
-//                    "voice": "male",
-//                    "prosody": 1,
-//                    },
-//            data: div.innerText,
-//            success: function(data) {
+        $.ajax({
+            type: "POST",
+            url: "http://api.openfpt.vn/text2speech/v4",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            headers: {
+                    "api_key": "b7891e7b46764220b73911ed479f3c7f",
+                    "speed": 2,
+                    "voice": "male",
+                    "prosody": 1,
+                    },
+            data: div.innerText,
+            success: function(data) {
 //                setSound(JSON.stringify(data));
-//                },
-//        });
+                speech = $.parseJSON(JSON.stringify(data));
+                var url = speech.async;
+                alert(url)
+                var audio = new Audio(url);
+                audio.play();
+                },
+        });
 
         var doc = document.getElementById('bot').innerHTML;
         document.getElementById('bot').innerHTML = doc + "<div class='calloutbig' id='callout'><img src='chatbot.png' width='50px' height='50px' class='circular--square' style='float: left;' /><div class='calloutright'>" + replies[i]["speech"] + "</div><div class='message-from message-from-bot'>"+ new Date().toLocaleTimeString() +"</div></div>";
