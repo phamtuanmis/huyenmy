@@ -26,7 +26,6 @@ function mybutton() {
 function send(mytext) {
     if (typeof mytext !='undefined'){
         var text = mytext
-//        alert(mytext)
     } else {
         var text = $("#input").val();
     }
@@ -42,7 +41,6 @@ function send(mytext) {
         headers: {"Authorization": "Bearer 1491fc0d408c4bfbb6d4e53773a14940"},
         data: JSON.stringify({ query: text, sessionId: "1491fc0d408" }),
         success: function(data) {
-//            setResponse(JSON.stringify(data));
             speech = $.parseJSON(JSON.stringify(data));
             var replies = speech.result.fulfillment.messages;
             nb_reply = replies.length
@@ -65,10 +63,9 @@ function send(mytext) {
                             },
                     data: div.innerText,
                     success: function(data) {
-                        //setSound(JSON.stringify(data));
-                        speech = $.parseJSON(JSON.stringify(data));
-                        var url = speech.async;
-//                        alert(url)
+                        sound = $.parseJSON(JSON.stringify(data));
+                        var url = sound.async;
+                        alert(url)
                         var audio = new Audio(url);
                         audio.play();
                         },
@@ -85,15 +82,3 @@ function send(mytext) {
 
     $('#input').val("");
 }
-
-//function setResponse(val) {
-//
-//}
-
-//function setSound(val){
-//    speech = $.parseJSON(val);
-//    var url = speech.async;
-//    alert(url)
-//    var audio = new Audio(url);
-//    audio.play();
-//}
