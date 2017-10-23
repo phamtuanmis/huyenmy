@@ -1,9 +1,8 @@
 $(document).ready(function() {
-    var texts = [
-            'Xin chào!',
-            'Hi 🙋🏻',
-            'Huyền My sẵn sàng trả lời bạn!'
-    ];
+
+    var texts = ['Xin chào!','Hi 🙋🏻','Huyền My sẵn sàng trả lời bạn!'];
+    //  setResponse("............");
+
     var text = texts[Math.floor(Math.random() * texts.length)];
     document.getElementById('bot').innerHTML = "<div class='calloutbig'><img src='chatbot.png' width='50px' height='50px' class='circular--square' style='float: left;' /><div class='calloutright'>" + text + "</div><div class='message-from message-from-bot'>"+ new Date().toLocaleTimeString() +"</div></div>";
     $("#input").keypress(function(event) {
@@ -21,7 +20,7 @@ $(document).ready(function() {
 
 
 function mybutton() {
-    var mytext = document.getElementById('button2').value;
+    var mytext = document.getElementById('button').value;
 //    alert(mytext)
     send(mytext)
 }
@@ -42,20 +41,24 @@ function send(mytext) {
     $.ajax({
     //    alert(val);
         type: "POST",
+
+        //  setResponse("............");
+
         url: "https://api.api.ai/v1/query?v=20150910",
         //    alert(val);//    alert(val);
+        //  setResponse("............");
         contentType: "application/json; charset=utf-8",//    alert();
         dataType: "json",
         headers: {"Authorization": "Bearer 1491fc0d408c4bfbb6d4e53773a14940"},
-        //  setResponse("Không thể kết nối với server...");
+        //  setResponse("............");
 
-        data: JSON.stringify({ query: text, lang: "cn", sessionId: "1491fc0d408" }),
+        data: JSON.stringify({ query: text, sessionId: "1491fc0d408" }),
         success: function(data) {
             setResponse(JSON.stringify(data));
         },
         //    alert(val);
         error: function() {
-            setResponse("Không thể kết nối với server...");
+            setResponse("Không thể kết nối ...");
         }
         //    alert();
     });
