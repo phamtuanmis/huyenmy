@@ -60,7 +60,7 @@ function send(mytext) {
                     headers: {
                             "api_key": "b7891e7b46764220b73911ed479f3c7f",
                             "speed": 2,
-                            "voice": "male",
+                            "voice": "female",
                             "prosody": 1,
                             },
                     data: div.innerText,
@@ -68,7 +68,7 @@ function send(mytext) {
                         //setSound(JSON.stringify(data));
                         speech = $.parseJSON(JSON.stringify(data));
                         var url = speech.async;
-                        alert(url)
+//                        alert(url)
                         var audio = new Audio(url);
                         audio.play();
                         },
