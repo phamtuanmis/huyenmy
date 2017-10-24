@@ -35,7 +35,7 @@ function send(mytext) {
     objDiv.scrollTop = objDiv.scrollHeight;
     var fun1 = $.ajax({
         type: "POST",
-        async:false,
+        async: false,
         url: "https://api.api.ai/v1/query?v=20150910",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -66,7 +66,7 @@ function send(mytext) {
                     success: function(data) {
                         sound = $.parseJSON(JSON.stringify(data));
                         var url = sound.async;
-//                        alert(url)
+                        alert(url)
                         var audio = new Audio(url);
                         audio.play();
                         },
