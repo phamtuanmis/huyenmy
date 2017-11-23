@@ -37,7 +37,7 @@ function send(mytext) {
         type: "POST",
         async: false,
         url: "https://api.dialogflow.com/v1/query?v=20150910",
-        contentType: "application/json; charset=utf-8",
+        contentType: "application/json",
         dataType: "json",
         headers: {"Authorization": "Bearer 1491fc0d408c4bfbb6d4e53773a14940"},
         data: JSON.stringify({ query: text, sessionId: "1491fc0d408" }),
