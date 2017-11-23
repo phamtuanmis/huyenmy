@@ -36,7 +36,7 @@ function send(mytext) {
     var fun1 = $.ajax({
         type: "POST",
         async: false,
-        url: "https://api.dialogflow.com/v1/query?v=20150910",
+        url: "https://api.dialogflow.com/v1/",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         headers: {"Authorization": "Bearer 1491fc0d408c4bfbb6d4e53773a14940"},
